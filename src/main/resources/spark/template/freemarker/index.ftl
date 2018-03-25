@@ -13,7 +13,7 @@
         <label for="password" class="login">Password</label>
         <input id="password" name="password" autocomplete="off" type="password"/>
     </div>
-    <input value="Add" type="submit" id="submit"/>
+    <input value="Add User" type="submit" id="submit"/>
 </form>
 <font color="red" id="status">Status: ${status}</font>
 <#list users as user>

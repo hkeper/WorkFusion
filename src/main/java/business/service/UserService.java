@@ -1,16 +1,12 @@
 package business.service;
 
+import business.User;
+import business.validation.*;
+import peristance.IUserRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import business.User;
-import business.validation.FullUserNameValidator;
-import business.validation.IFieldValidator;
-import business.validation.LoginValidator;
-import business.validation.PasswordValidator;
-import business.validation.ValidationError;
-import peristance.IUserRepository;
 
 /**
  * Created by senpay on 15.2.18.
@@ -44,8 +40,8 @@ public class UserService {
         List<String> userInfo = new ArrayList<>();
         for(User user : users) {
             //Yes, writing code THAT bad. Brute force and no lambdas
-            userInfo.add("Name: " + user.getFullUserName() +
-            " login: " + user.getUserLogInName() + " password " +
+            userInfo.add("Full name: " + user.getFullUserName() +
+            " Username: " + user.getUserLogInName() + " Password: " +
             user.getPassword());
         }
         return userInfo;

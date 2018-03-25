@@ -5,9 +5,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import utils.ConfigProperties;
-
-import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by Alexander Pushkarev on 9.2.18.
@@ -29,4 +27,9 @@ public class SelenideApplicationDriver {
     public static void closeApplication() {
         close();
     }
+
+    public static void pageRefresh(){
+        refresh();
+    }
+
 }

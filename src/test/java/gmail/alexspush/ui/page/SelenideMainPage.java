@@ -16,6 +16,7 @@ public class SelenideMainPage {
     private static final By USER_PASSWORD_FIELD_ID = By.id("password");
     private static final By SUBMIT_BUTTON_ID = By.id("submit");
     private static final By STATUS_FIELD_ID = By.id("status");
+    private static final By LASTUSER_MESSAGE = By.xpath("//p[@id='users'][last()]");
 
      //Brute force and not Thread-Local implementation of Singletone
     //Lazy initialization not needed, will just use static field
@@ -39,4 +40,9 @@ public class SelenideMainPage {
     public String getStatus() {
         return $(STATUS_FIELD_ID).getText();
     }
+
+    public String getLastUser() {
+        return $(LASTUSER_MESSAGE).getText();
+    }
+
 }
