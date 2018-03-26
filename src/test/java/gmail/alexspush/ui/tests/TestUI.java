@@ -9,16 +9,19 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Mikhail Makeikin on 3/24/18.
+ *
+ * Tests that implemented all test cases from document test_cases.xlsx
+ *
  */
 public class TestUI extends SelenideApplicationDriver{
 
     private SelenideMainPage mainPage = SelenideMainPage.INSTANCE;
     private String userName = "User";
     private String fullName = "Name";
-    private String password = "1a";
+    private String password = "123abc";
 
     //Positive tests
-    @Test
+    @Test//test case 1
     public void createUserWithValidValues(){
         mainPage.setUserName(userName);
         mainPage.setFullname(fullName);
@@ -28,7 +31,7 @@ public class TestUI extends SelenideApplicationDriver{
                 mainPage.getStatus().equals("Status: user " + userName + " was created"));
     }
 
-    @Test
+    @Test//test case 2
     public void disallowEmptyUsername(){
         mainPage.setUserName("");
         mainPage.clickSubmit();
@@ -36,7 +39,7 @@ public class TestUI extends SelenideApplicationDriver{
                 mainPage.getStatus().equals("Status: Login cannot be empty"));
     }
 
-    @Test
+    @Test//test case 3
     public void disallowEmptyFullName(){
         mainPage.setUserName(userName);
         mainPage.setFullname("");
@@ -45,7 +48,7 @@ public class TestUI extends SelenideApplicationDriver{
                 mainPage.getStatus().equals("Status: Full name cannot be empty"));
     }
 
-    @Test
+    @Test//test case 4
     public void disallowEmptyPassword(){
         mainPage.setUserName(userName);
         mainPage.setFullname(fullName);
@@ -56,8 +59,27 @@ public class TestUI extends SelenideApplicationDriver{
     }
 
     //Negative tests
-    @Test
-    public void negativeAddedUsersSavedAfterPageRefresh(){
+    @Test//test case 5
+    public void disallowWeakPassword(){
+        String passwordInvalid1 = "123ab";
+        String passwordInvalid2 = "Abcdef";
+
+        mainPage.setUserName(userName);
+        mainPage.setFullname(fullName);
+        mainPage.setPassword(passwordInvalid1);
+        mainPage.clickSubmit();
+        assertTrue("There wrong message for invalid password!",
+                mainPage.getStatus().equals("Status: Password does not conform rules"));
+        mainPage.setUserName(userName);
+        mainPage.setFullname(fullName);
+        mainPage.setPassword(passwordInvalid2);
+        mainPage.clickSubmit();
+        assertTrue("There wrong message for invalid password!",
+                mainPage.getStatus().equals("Status: Password does not conform rules"));
+    }
+
+    @Test//test case 6
+    public void negativeAddedUsersDisplayedAfterPageRefresh(){
         mainPage.setUserName(userName);
         mainPage.setFullname(fullName);
         mainPage.setPassword(password);
@@ -70,7 +92,7 @@ public class TestUI extends SelenideApplicationDriver{
                         " Username: " + userName +" Password: "+ password));
     }
 
-    @Test
+    @Test//test case 7
     public void negativeScrollAppearsAfterUsersAdding(){
         Boolean isScrollPresent = false;
 

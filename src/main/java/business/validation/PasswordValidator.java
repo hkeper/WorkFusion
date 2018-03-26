@@ -33,6 +33,7 @@ public class PasswordValidator implements IFieldValidator {
 
     private boolean doesConformToComplexityRules(String strToValidate) {
         return strToValidate.matches(".*\\d.*") &&
-                strToValidate.matches(".*\\p{Alpha}.*");
+                strToValidate.matches(".*\\p{Alpha}.*") &&
+                (strToValidate.length()>=6);
     }
 }
